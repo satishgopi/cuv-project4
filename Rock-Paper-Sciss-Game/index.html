@@ -28,13 +28,13 @@
         <!-- Playboard-section -->
         <section class="playboard-container" id="playboardBox">
             <div class="playboard">
-                <div class="rock-box" id="rockbox" value="rock1">
+                <div class="rock-box" id="rockbox" value="rock1" onclick="userPlay('rock')">
                     <img width="55" height="55" src="./assets/ic-rock.png" alt="">
                 </div>
-                <div class="paper-box" id="paperbox">
+                <div class="paper-box" id="paperbox" onclick="userPlay('paper')">
                     <img width="55" height="55" src="./assets/ic-paper.png" alt="">
                 </div>
-                <div class="scissor" id="scissorbox">
+                <div class="scissor" id="scissorbox" onclick="userPlay('scissor')">
                     <img width="55" height="55" src="./assets/ic-scissor.png" alt="">
                 </div>
             </div>
@@ -45,6 +45,7 @@
             </div>
         </section>
 
+        <!-- Rules-Section -->
         <section class="game-rules-container">
             <div class="game-rules-box">
                 <div class="close-btn">
@@ -61,6 +62,7 @@
             <button class="rules-btn" onclick="rulestab()">RULES</button>
         </section>
 
+        <!-- score-final-txt -->
         <section class="final-result-container hide" id="finalResultBox">
             <div class="wrapper-block">
                 <div class="final-result-box">

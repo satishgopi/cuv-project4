@@ -1,37 +1,23 @@
-const rulesBtn = document.querySelector(".rules-btn");
+// const rulesBtn = document.querySelector(".rules-btn");
 const gameRulesBox = document.querySelector(".game-rules-box");
 const closeBtn = document.querySelector(".close-btn");
-
-const rockbox = document.querySelector("#rockbox")
-const paperbox = document.querySelector("#paperbox")
-const scissorbox = document.querySelector("#scissorbox")
-
-const FinalOut = document.querySelector("#final-result")
-const pcFinal = document.querySelector("#pc-result")
 
 const playboardBox = document.querySelector("#playboardBox");
 const finalResultBox = document.querySelector("#finalResultBox");
 
-const userIcon = document.querySelector("#-userIcon");
-const pcIcon = document.querySelector("#-pcIcon")
-
-const imgIcon = document.querySelector("#imgIcon");
-const pcImgIcon = document.querySelector("#pcImgIcon");
-
-const winnerTitle = document.getElementById("-winnerTitle");
-const againstPC = document.getElementById("-againstPC");
-
-const urScore = document.getElementById("-urScore");
 const pcScore = document.getElementById("-pcScore");
+const urScore = document.getElementById("-urScore");
+
+const userIcon = document.getElementById("imgIcon");
+const pcIcon = document.getElementById("pcImgIcon");
+
+const userIconBorder = document.getElementById("-userIcon");
+const pcIconBorder = document.getElementById("-pcIcon");
 
 const Blue = "#0074B6";
 const Yellow = "#FFA943";
 const Purple  = "#BD00FF"
-
-let pcs = 1;
-let urs = 1;    
-
-
+ 
 
 
 function rulestab(){
@@ -51,197 +37,75 @@ function playAgain(){
 }
 
 
-rockbox.addEventListener("click", function(){
-    playboardBox.classList.add("hide");
+let userScore = 0;
+let computerScore = localStorage.getItem("data");
+
+function userPlay(userChoice){
+    let randomName = ["rock","paper","scissor"]
+    let randomNumber = randomName[Math.floor(Math.random() * 3)];
+
     finalResultBox.classList.remove("hide");
-    imgIcon.src = "./assets/ic-rock.png";
-    
-
-    let r = 1
-    let random = Math.floor(Math.random() * 3) + r;
-        switch (random) {
-            case  1:
-                // Draw
-                pcImgIcon.src = "./assets/ic-rock.png";
-
-                userIcon.style.setProperty("--displayUser", "none");
-                userIcon.style.borderColor = Blue;
-
-                pcIcon.style.borderColor = Blue;
-                pcIcon.style.setProperty("--displayPc", "none");
-               
-                winnerTitle.innerHTML = "TIE UP"
-                againstPC.classList.add("hide");
-              break;
-
-            case 2:
-                // PC-WIN
-                pcImgIcon.src = "./assets/ic-paper.png";
-
-                userIcon.style.setProperty("--displayUser", "none");
-                userIcon.style.borderColor = Blue;
-                
-                pcIcon.style.setProperty("--displayPc", "block")
-                pcIcon.style.borderColor = Yellow;
-
-                winnerTitle.innerHTML = "YOU LOST"
-                againstPC.classList.remove("hide");
-                // pcScore.innerHTML = pcs;
-                saveDataPc()
-                pcs++;
-
-              break;
-            case 3:
-                // User-Win
-                pcImgIcon.src = "./assets/ic-scissor.png";
-
-                userIcon.style.setProperty("--displayUser", "block");
-                userIcon.style.borderColor = Blue;
-                
-                pcIcon.style.setProperty("--displayPc", "none");
-                pcIcon.style.borderColor = Purple;
-
-                winnerTitle.innerHTML = "YOU WIN";
-                againstPC.classList.remove("hide");
-                // urScore.innerHTML = urs;
-                saveDataUser()
-                urs++;
-          }
-})
-
-
-paperbox.addEventListener("click", function(){
     playboardBox.classList.add("hide");
-    finalResultBox.classList.remove("hide");
-    imgIcon.src = "./assets/ic-paper.png";
 
-    let p = 1
-    let random = Math.floor(Math.random() * 3) + p;
-        switch (random) {
-            case  1:
-                // Draw
-                pcImgIcon.src = "./assets/ic-paper.png";
-
-                userIcon.style.setProperty("--displayUser", "none")
-                userIcon.style.borderColor = Yellow;
-
-                pcIcon.style.setProperty("--displayPc", "none");
-                pcIcon.style.borderColor = Yellow;
-
-                winnerTitle.innerHTML = "TIE UP"
-                againstPC.classList.add("hide");
-
-              break;
-
-            case 2:
-                // User-win
-                pcImgIcon.src = "./assets/ic-rock.png";
-
-                userIcon.style.borderColor = Yellow;
-                userIcon.style.setProperty("--displayUser", "block");
-
-                pcIcon.style.setProperty("--displayPc", "none");
-                pcIcon.style.borderColor = Blue;
-
-                winnerTitle.innerHTML = "YOU WIN";
-                againstPC.classList.remove("hide");
-                // urScore.innerHTML = urs;
-                saveDataUser()
-                urs++;
-
-              break;
-            case 3:
-                // Pc-Win
-                pcImgIcon.src = "./assets/ic-scissor.png";
-                userIcon.style.borderColor = Yellow;
-                userIcon.style.setProperty("--displayUser", "none");
-
-                pcIcon.style.setProperty("--displayPc", "block")
-                pcIcon.style.borderColor = Purple;
-
-                winnerTitle.innerHTML = "YOU LOST"
-                againstPC.classList.remove("hide");
-                // pcScore.innerHTML = pcs;
-                saveDataPc()
-                pcs++;
-
-          }
-})
-scissorbox.addEventListener("click", function(){
-    playboardBox.classList.add("hide");
-    finalResultBox.classList.remove("hide");
-    imgIcon.src = "./assets/ic-scissor.png";
-
-    let s = 1
-    let random = Math.floor(Math.random() * 3) + s;
-
-    switch (random) {
-        case  1:
-            // PC-Win
-            pcImgIcon.src = "./assets/ic-rock.png";
-
-            userIcon.style.setProperty("--displayUser", "none");
-            userIcon.style.borderColor = Purple;
-
-            pcIcon.style.setProperty("--displayPc", "block");
-            pcIcon.style.borderColor = Blue;
-
-            winnerTitle.innerHTML = "YOU LOST"
-            againstPC.classList.remove("hide");
-            // pcScore.innerHTML = pcs;
-            saveDataPc()
-            pcs++;
-
-          break;
-
-        case 2:
-            // User-WIN
-            pcImgIcon.src = "./assets/ic-paper.png";
-
-            userIcon.style.setProperty("--displayUser", "block");
-            userIcon.style.borderColor = Purple;
-            
-            pcIcon.style.setProperty("--displayPc", "none")
-            pcIcon.style.borderColor = Yellow;
-
-            winnerTitle.innerHTML = "YOU WIN";
-            againstPC.classList.remove("hide");
-            saveDataUser()
-            urs++;
-          break;
-        case 3:
-            // Draw
-            pcImgIcon.src = "./assets/ic-scissor.png";
-
-            userIcon.style.setProperty("--displayUser", "none");
-            userIcon.style.borderColor = Purple;
-            
-            pcIcon.style.setProperty("--displayPc", "none");
-            pcIcon.style.borderColor = Purple;
-
-            winnerTitle.innerHTML = "TIE UP"
-            againstPC.classList.add("hide");
-            
-      }
-})
+    userIcon.src = `./assets/ic-${userChoice}.png`;
+    pcIcon.src = `./assets/ic-${randomNumber}.png`;
 
 
-// userScroSave
-function saveDataUser(){
-    localStorage.setItem("data", urScore.innerHTML = urs);
+    // userIconBorderColorChange
+    if(userChoice === "rock"){
+        userIconBorder.style.borderColor = Blue;
+    } else if (userChoice === "paper"){
+        userIconBorder.style.borderColor = Yellow;
+    } else{
+        userIconBorder.style.borderColor = Purple;
+    }
+
+    // PcIconBorderColorChange
+    if(randomNumber === "rock"){
+        pcIconBorder.style.borderColor = Blue;
+    } else if (randomNumber === "paper"){
+        pcIconBorder.style.borderColor = Yellow;
+    }else{
+        pcIconBorder.style.borderColor = Purple;
+    }
+
+
+    if(userChoice === randomNumber){
+        // TIE
+        pcIconBorder.style.setProperty("--displayPc", "none");
+        userIconBorder.style.setProperty("--displayUser", "none");
+        document.getElementById("-winnerTitle").innerHTML = "TIE"
+        document.getElementById("-againstPC").classList.add("hide")
+
+        // You Win
+    } else if (
+        ( userChoice === "rock" && randomNumber === "scissor") || 
+        ( userChoice === "paper" && randomNumber === "rock") ||
+        ( userChoice === "scissor" && randomNumber === "paper") 
+    ) {
+        pcIconBorder.style.setProperty("--displayPc", "none");
+        userIconBorder.style.setProperty("--displayUser", "block");
+
+        userScore++;
+        document.getElementById("-winnerTitle").innerHTML = "YOU WIN";
+        document.getElementById("-againstPC").classList.remove("hide")
+
+        // PC-Win
+    } else {
+        pcIconBorder.style.setProperty("--displayPc", "block");
+        userIconBorder.style.setProperty("--displayUser", "none");
+
+        computerScore++;
+        document.getElementById("-winnerTitle").innerHTML = "YOU LOST";
+        document.getElementById("-againstPC").classList.remove("hide")
+    }
+    // Score Update
+    pcScore.innerHTML = computerScore
+    urScore.innerHTML = userScore;
+
+    localStorage.setItem("data", computerScore);
+
 }
 
-function showTaskUser(){
-    urScore.innerHTML = localStorage.getItem("data");
-}
-showTaskUser();
 
-// pcScroSave
-function saveDataPc(){
-    localStorage.setItem("dataPc", pcScore.innerHTML = pcs);
-}
 
-function showTaskPc(){
-    pcScore.innerHTML = localStorage.getItem("dataPc") ;
-}
-showTaskPc();
