@@ -6,6 +6,7 @@
 body {
   background: #8cc461;
   font-family: "Roboto", sans-serif;
+  height: 100vh;
 }
 .container {
   width: 100%;
@@ -400,6 +401,7 @@ body {
   }
   .score-board-box .title h1 {
     margin-bottom: 0.5rem;
+    text-align: center;
   }
   .userIconBox,
   .pc-result-icon {
@@ -407,13 +409,6 @@ body {
     height: 130px;
     border: 10px solid #0074b6;
   }
-  /* .play-again-btn {
-      position: absolute;
-      bottom: -8rem;
-      left: -50%;
-      right: -50%;
-      height: 45px;
-    } */
   .win-title {
     top: 150%;
   }
@@ -437,5 +432,14 @@ body {
   .final-result-container {
     margin-top: 4rem;
     padding: 0.5rem;
+  }
+  .container {
+    padding: 1rem;
+  }
+}
+@media screen and (max-width: 380px) {
+  body {
+    height: 130vh;
+    position: relative;
   }
 }
